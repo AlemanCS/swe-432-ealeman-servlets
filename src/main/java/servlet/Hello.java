@@ -3,6 +3,10 @@ import javax.servlet.*; // servlet library
 import javax.servlet.http.*; // servlet library
 import java.io.*;
 
+@WebServlet(
+        name = "MySimpleHelloServlet",
+        urlPatterns = {"/eliashello"}
+    )
 public class Hello extends HttpServlet // Inheriting from HttpServlet makes this a servlet
 {
 public void doGet (HttpServletRequest request, HttpServletResponse response)
