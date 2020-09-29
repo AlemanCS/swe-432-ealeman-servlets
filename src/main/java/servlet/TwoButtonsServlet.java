@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 //David: (1) adds servlet mapping annotation
 import javax.servlet.annotation.WebServlet;
-@WebServlet( name = "twoButtons", urlPatterns = {"/twoButtons"} )
+@WebServlet( name = "twoButtonsz", urlPatterns = {"/twoButtonsz"} )
 
 // twoButtons class
 // CONSTRUCTOR: no constructor specified (default)
@@ -40,7 +40,7 @@ public class TwoButtonsServlet extends HttpServlet
 // David: (5) adds the path of your form submit action
 static String Domain  = "";
 static String Path    = "";
-static String Servlet = "twoButtons";
+static String Servlet = "twoButtonsz";
 
 // Button labels
 static String OperationAdd = "Add";
