@@ -39,8 +39,8 @@ static String Path    = "";
 static String Servlet = "twoButtons";
 
 // Button labels
-static String OperationAdd = "Add String";
-static String OperationSub = "Add String";
+static String OperationAdd = "stringAstringB";
+static String OperationSub = "stringBstringA";
 
 // Other strings.
 static String Style ="https://www.cs.gmu.edu/~offutt/classes/432/432-style.css";
@@ -71,7 +71,7 @@ public void doPost (HttpServletRequest request, HttpServletResponse response)
    }
    else if (operation.equals(OperationSub))
    {
-      rslt = lhsVal + rhsVal;
+      rslt = rhsVal + lhsVal;
    }
 
    response.setContentType("text/html");
@@ -118,19 +118,18 @@ private void PrintBody (PrintWriter out, String lhs, String rhs, String rslt)
 {
    out.println("<body>");
    out.println("<p>");
-   out.println("A simple example that demonstrates how to operate with");
-   out.println("multiple submit buttons.");
+   out.println("Elias Aleman's simple example String Concatenation");
    out.println("</p>");
    out.print  ("<form method=\"post\"");
    out.println(" action=\"/" + Servlet + "\">");
    out.println("");
    out.println(" <table>");
    out.println("  <tr>");
-   out.println("   <td>First value:");
+   out.println("   <td>String A:");
    out.println("   <td><input type=\"text\" name=\"LHS\" value=\"" + lhs + "\" size=5>");
    out.println("  </tr>");
    out.println("  <tr>");
-   out.println("   <td>Second value:");
+   out.println("   <td>String B:");
    out.println("   <td><input type=\"text\" name=\"RHS\" value=\"" + rhs + "\" size=5>");
    out.println("  </tr>");
    out.println("  <tr>");
@@ -142,7 +141,6 @@ private void PrintBody (PrintWriter out, String lhs, String rhs, String rslt)
    out.println(" <br>");
    out.println(" <input type=\"submit\" value=\"" + OperationAdd + "\" name=\"Operation\">");
    out.println(" <input type=\"submit\" value=\"" + OperationSub + "\" name=\"Operation\">");
-   out.println(" <input type=\"reset\" value=\"Reset\" name=\"reset\">");
    out.println("</form>");
    out.println("");
    out.println("</body>");
