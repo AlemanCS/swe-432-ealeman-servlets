@@ -45,6 +45,7 @@ public class PersistenceFile extends HttpServlet{
   {
      String name = request.getParameter(Data.NAME.name());
      String age = request.getParameter(Data.AGE.name());
+     String year = request.getParameter(Data.YEAR.name());
 
      String error = "";
      if(name == null){
@@ -73,13 +74,29 @@ public class PersistenceFile extends HttpServlet{
           }
      }
 
+     if(year == null){
+      error+= "<li>Graduation Year is required.<li>";
+      age = "";
+    }else{
+         try{
+           Integer yearInteger = new Integer(year);
+           if(yearInteger<1){
+               error+= "<li>Year must be an integer greater than 0.</li>";
+               age = "";
+           }
+         }catch (Exception e) {
+           error+= "<li>Year must be an integer greater than 0.</li>";
+           age = "";
+         }
+    }
+
      response.setContentType("text/html");
      PrintWriter out = response.getWriter();
 
      if (error.length() == 0){
        PrintWriter entriesPrintWriter =
           new PrintWriter(new FileWriter(RESOURCE_FILE, true), true);
-       entriesPrintWriter.println(name+VALUE_SEPARATOR+age);
+       entriesPrintWriter.println(name+VALUE_SEPARATOR+age+VALUE_SEPARATOR+year);
        entriesPrintWriter.close();
 
        printHead(out);
@@ -87,7 +104,7 @@ public class PersistenceFile extends HttpServlet{
        printTail(out);
      }else{
        printHead(out);
-       printBody(out, name, age, error);
+       printBody(out, name, age, year,error);
        printTail(out);
      }
   }
@@ -113,7 +130,7 @@ public class PersistenceFile extends HttpServlet{
      out.println("<html>");
      out.println("");
      out.println("<head>");
-     out.println("<title>File Persistence Example</title>");
+     out.println("<title>Elias Aleman's File Persistence Example</title>");
      // Put the focus in the name field
      out.println ("<script>");
      out.println ("  function setFocus(){");
@@ -128,11 +145,11 @@ public class PersistenceFile extends HttpServlet{
    *  Prints the <BODY> of the HTML page
   ********************************************************* */
   private void printBody (
-    PrintWriter out, String name, String age, String error){
+    PrintWriter out, String name, String age, String year,String error){
      out.println("<body onLoad=\"setFocus()\">");
      out.println("<p>");
      out.println(
-     "A simple example that demonstrates how to persist data to a file");
+     "Elias Aleman's example that demonstrates how to persist data to a file");
      out.println("</p>");
 
      if(error != null && error.length() > 0){
@@ -159,6 +176,12 @@ public class PersistenceFile extends HttpServlet{
       +"\" oninput=\"this.value=this.value.replace(/[^0-9]/g,'');\" value=\""
       +age+"\" size=3 required></td>");
      out.println("  </tr>");
+     out.println("  <tr>");
+     out.println("   <td>Graduation Year:</td>");
+     out.println("   <td><input type=\"text\"  name=\""+Data.YEAR.name()
+      +"\" oninput=\"this.value=this.value.replace(/[^0-9]/g,'');\" value=\""
+      +age+"\" size=4 required></td>");
+     out.println("  </tr>");
      out.println(" </table>");
      out.println(" <br>");
      out.println(" <br>");
@@ -177,7 +200,7 @@ public class PersistenceFile extends HttpServlet{
     out.println("<body>");
     out.println("<p>");
     out.println(
-    "A simple example that shows entries from a plain file");
+    "Elias Aleman's example that shows entries from a plain file");
     out.println("</p>");
     out.println("");
     out.println(" <table>");
@@ -186,6 +209,7 @@ public class PersistenceFile extends HttpServlet{
         out.println("  <tr>");
         out.println("   <th>Name</th>");
         out.println("   <th>Age</th>");
+        out.println("   <th>Graduation Year</th>");
         out.println("  </tr>");
         File file = new File(resourcePath);
         if(!file.exists()){
