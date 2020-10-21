@@ -14,10 +14,11 @@ import java.util.Enumeration;
 @WebServlet(name = "attributeServlet", urlPatterns = {"/attribute"})
 public class AttributeServlet extends HttpServlet
 {
-   String lifeCycleURL = "/attribute";
+      String lifeCycleURL = "/attribute";
 public void doGet (HttpServletRequest request, HttpServletResponse response)
        throws ServletException, IOException
 {
+   
    // Get session object
    HttpSession session = request.getSession();
 
@@ -50,6 +51,31 @@ public void doGet (HttpServletRequest request, HttpServletResponse response)
 
    response.setContentType("text/html");
    PrintWriter out = response.getWriter();
+
+   if (action != null && action.equals("invalidate"))
+   {  // Called from the invalidate button, kill the session.
+      // Get session object
+      session = request.getSession();
+      session.invalidate();
+
+      out.println("<html>");
+      out.println("<head>");
+      out.println(" <title> Elias Aleman's Session lifecycle</title>");
+      out.println("</head>");
+      out.println("");
+      out.println("<body>");
+
+      out.println("<p>Your session has been invalidated.</P>");
+
+      // Create a link so the user can create a new session.
+    
+      out.println("<a href=\"" + lifeCycleURL + "?action=newSession\">");
+      out.println("Create new session</A>");
+
+      out.println("</body>");
+      out.println("</html>");
+      out.close();
+   } //end if
 
    out.println("<html>");
    // no-cache lets the page reload by clicking on the reload link
@@ -88,33 +114,7 @@ public void doGet (HttpServletRequest request, HttpServletResponse response)
 
    String action = request.getParameter("action");
 
-   if (action != null && action.equals("invalidate"))
-   {  // Called from the invalidate button, kill the session.
-      // Get session object
-      HttpSession session = request.getSession();
-      session.invalidate();
-
-      response.setContentType("text/html");
-      PrintWriter out = response.getWriter();
-
-      out.println("<html>");
-      out.println("<head>");
-      out.println(" <title> Elias Aleman's Session lifecycle</title>");
-      out.println("</head>");
-      out.println("");
-      out.println("<body>");
-
-      out.println("<p>Your session has been invalidated.</P>");
-
-      // Create a link so the user can create a new session.
-    
-      out.println("<a href=\"" + lifeCycleURL + "?action=newSession\">");
-      out.println("Create new session</A>");
-
-      out.println("</body>");
-      out.println("</html>");
-      out.close();
-   } //end if
+   
    out.print  ("<br><br><a href=\"" + lifeCycleURL + "?action=invalidate\">");
    out.println("Invalidate the session</a>");
 
