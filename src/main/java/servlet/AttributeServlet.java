@@ -102,6 +102,7 @@ public void doGet (HttpServletRequest request, HttpServletResponse response)
    out.println(" <input type=\"text\" size=\"10\" name=\"attrib_value\">");
 
    out.println("<br>");
+   out.println("<br>");
 
    out.println(" Name2: ");
    out.println(" <input type=\"text\" size=\"10\" name=\"attrib_name2\">");
@@ -117,6 +118,9 @@ public void doGet (HttpServletRequest request, HttpServletResponse response)
    
    out.print  ("<br><br><a href=\"" + lifeCycleURL + "?action=invalidate\">");
    out.println("Invalidate the session</a>");
+
+   out.println("<br>");
+   out.println("<br>");
 
    out.println("Attributes in this session:");
    Enumeration e = session.getAttributeNames();
