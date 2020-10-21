@@ -20,17 +20,27 @@ public void doGet (HttpServletRequest request, HttpServletResponse response)
 
    String name   = request.getParameter("attrib_name");
    String value  = request.getParameter("attrib_value");
+
+   String name2  = request.getParameter("attrib_name2");
+   String value2 = request.getParameter("attrib_value2");
+
    String remove = request.getParameter("attrib_remove");
 
    if (remove != null && remove.equals("on"))
    {
       session.removeAttribute(name);
+      session.removeAttribute(name2);
    }
    else
    {
       if ((name != null && name.length() > 0) && (value != null && value.length() > 0))
       {
          session.setAttribute(name, value);
+      }
+
+      if ((name2 != null && name2.length() > 0) && (value2 != null && value2.length() > 0))
+      {
+         session.setAttribute(name2, value2);
       }
 
    }
@@ -47,9 +57,9 @@ public void doGet (HttpServletRequest request, HttpServletResponse response)
    out.println("");
 
    out.println("<body>");
-   out.println("<h1><center>Session attributes</center></h1>");
+   out.println("<h1><center>Elias Aleman's Session attributes</center></h1>");
 
-   out.println("Enter name and value of an attribute");
+   out.println("Enter names and values of attributes");
 
 
    String url = response.encodeURL("attribute");
@@ -59,6 +69,14 @@ public void doGet (HttpServletRequest request, HttpServletResponse response)
 
    out.println(" Value: ");
    out.println(" <input type=\"text\" size=\"10\" name=\"attrib_value\">");
+
+   out.println("<br>")
+
+   out.println(" Name2: ");
+   out.println(" <input type=\"text\" size=\"10\" name=\"attrib_name2\">");
+
+   out.println(" Value2: ");
+   out.println(" <input type=\"text\" size=\"10\" name=\"attrib_value2\">");
 
    out.println(" <br><input type=\"checkbox\" name=\"attrib_remove\">Remove");
    out.println(" <input type=\"submit\" name=\"update\" value=\"Update\">");
@@ -72,10 +90,18 @@ public void doGet (HttpServletRequest request, HttpServletResponse response)
       String att_name  = (String) e.nextElement();
       String att_value = (String) session.getAttribute(att_name);
 
+      String att_name2  = (String) e.nextElement();
+      String att_value2 = (String) session.getAttribute(att_name2);
+
       out.print  ("<br><b>Name:</b> ");
       out.println(att_name);
       out.print  ("<br><b>Value:</b> ");
       out.println(att_value);
+
+      out.print  ("<br><b>Name2:</b> ");
+      out.println(att_name2);
+      out.print  ("<br><b>Value2:</b> ");
+      out.println(att_value2);
    } //end while
 
    out.println("</body>");
