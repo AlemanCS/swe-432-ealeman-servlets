@@ -114,31 +114,8 @@ public void doGet (HttpServletRequest request, HttpServletResponse response)
       out.println("</html>");
       out.close();
    } //end if
-   else
-   {  // We were called either directly or through the reload button.
-      // Get session object
-      HttpSession session = request.getSession();
-
-      response.setContentType("text/html");
-      PrintWriter out = response.getWriter();
-
-      out.println("<html>");
-      // no-cache lets the page reload by clicking on the reload link
-      out.println("<meta http-equiv=\"Pragma\" content=\"no-cache\">");
-      out.println("<head>");
-      out.println(" <title> Session lifecycle</title>");
-      out.println("</head>");
-      out.println("");
-
-      out.println("<body>");
-      out.println("<h1><center>Elias Aleman's Session life cycle</center></h1>");
-
-      out.print  ("<br><br><a href=\"" + lifeCycleURL + "?action=invalidate\">");
-      out.println("Invalidate the session</a>");
-      out.print  ("<br><a href=\"" + lifeCycleURL + "\">");
-      out.println("Reload this page</a>");
-
-   }
+   out.print  ("<br><br><a href=\"" + lifeCycleURL + "?action=invalidate\">");
+   out.println("Invalidate the session</a>");
 
    out.println("Attributes in this session:");
    Enumeration e = session.getAttributeNames();
