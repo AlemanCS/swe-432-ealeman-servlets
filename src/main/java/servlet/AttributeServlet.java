@@ -9,6 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import java.io.*;
 import java.util.Enumeration;
 
+String lifeCycleURL = "/attribute";
+
 @WebServlet(name = "attributeServlet", urlPatterns = {"/attribute"})
 public class AttributeServlet extends HttpServlet
 {
@@ -82,6 +84,61 @@ public void doGet (HttpServletRequest request, HttpServletResponse response)
    out.println(" <input type=\"submit\" name=\"update\" value=\"Update\">");
    out.println("</form>");
    out.println("<hr>");
+
+   String action = request.getParameter("action");
+
+   if (action != null && action.equals("invalidate"))
+   {  // Called from the invalidate button, kill the session.
+      // Get session object
+      HttpSession session = request.getSession();
+      session.invalidate();
+
+      response.setContentType("text/html");
+      PrintWriter out = response.getWriter();
+
+      out.println("<html>");
+      out.println("<head>");
+      out.println(" <title> Elias Aleman's Session lifecycle</title>");
+      out.println("</head>");
+      out.println("");
+      out.println("<body>");
+
+      out.println("<p>Your session has been invalidated.</P>");
+
+      // Create a link so the user can create a new session.
+    
+      out.println("<a href=\"" + lifeCycleURL + "?action=newSession\">");
+      out.println("Create new session</A>");
+
+      out.println("</body>");
+      out.println("</html>");
+      out.close();
+   } //end if
+   else
+   {  // We were called either directly or through the reload button.
+      // Get session object
+      HttpSession session = request.getSession();
+
+      response.setContentType("text/html");
+      PrintWriter out = response.getWriter();
+
+      out.println("<html>");
+      // no-cache lets the page reload by clicking on the reload link
+      out.println("<meta http-equiv=\"Pragma\" content=\"no-cache\">");
+      out.println("<head>");
+      out.println(" <title> Session lifecycle</title>");
+      out.println("</head>");
+      out.println("");
+
+      out.println("<body>");
+      out.println("<h1><center>Elias Aleman's Session life cycle</center></h1>");
+
+      out.print  ("<br><br><a href=\"" + lifeCycleURL + "?action=invalidate\">");
+      out.println("Invalidate the session</a>");
+      out.print  ("<br><a href=\"" + lifeCycleURL + "\">");
+      out.println("Reload this page</a>");
+
+   }
 
    out.println("Attributes in this session:");
    Enumeration e = session.getAttributeNames();
