@@ -30,6 +30,8 @@ public void doGet (HttpServletRequest request, HttpServletResponse response)
 
    String remove = request.getParameter("attrib_remove");
 
+   String action = request.getParameter("action");
+
    if (remove != null && remove.equals("on"))
    {
       session.removeAttribute(name);
@@ -111,8 +113,6 @@ public void doGet (HttpServletRequest request, HttpServletResponse response)
    out.println(" <input type=\"submit\" name=\"update\" value=\"Update\">");
    out.println("</form>");
    out.println("<hr>");
-
-   String action = request.getParameter("action");
 
    
    out.print  ("<br><br><a href=\"" + lifeCycleURL + "?action=invalidate\">");
