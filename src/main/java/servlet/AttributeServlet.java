@@ -9,11 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import java.io.*;
 import java.util.Enumeration;
 
-String lifeCycleURL = "/attribute";
+
 
 @WebServlet(name = "attributeServlet", urlPatterns = {"/attribute"})
 public class AttributeServlet extends HttpServlet
 {
+   String lifeCycleURL = "/attribute";
 public void doGet (HttpServletRequest request, HttpServletResponse response)
        throws ServletException, IOException
 {
