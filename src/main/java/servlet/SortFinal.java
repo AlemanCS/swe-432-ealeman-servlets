@@ -48,6 +48,7 @@ public void doPost (HttpServletRequest request, HttpServletResponse response)
 
    List<String> newStrings = new ArrayList<String>(Arrays.asList(StringArray));
 
+
    if(operation.equals(OperationAscending)){
         //Sorts string in ascending order
         Collections.sort(newStrings);
@@ -57,9 +58,11 @@ public void doPost (HttpServletRequest request, HttpServletResponse response)
         Collections.reverse(newStrings);
    }
 
+   Set<String> s = new LinkedHashSet<>(newStrings);
+
    String rslt = "";
 
-   for (String name : newStrings){
+   for (String name : s){
        rslt += name + " ";
    }
    
