@@ -2,7 +2,6 @@ package main.java.servlet;
 
 import java.io.PrintWriter;
 import java.util.*;
-import java.util.ArrayList;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -40,38 +39,38 @@ static String OperationDescending = "Descend";
 public void doPost (HttpServletRequest request, HttpServletResponse response)
    throws ServletException, IOException
 {
-   
-   String operation = request.getParameter("Operation");
-   String listOfString = request.getParameter("listOfStrings").toLowerCase();
-
-   String[] StringArray = listOfString.split(" ");
-
-   List<String> newStrings = new ArrayList<String>(Arrays.asList(StringArray));
-
-
-   if(operation.equals(OperationAscending)){
-        //Sorts string in ascending order
-        Collections.sort(newStrings);
+   String reset = request.getParameter("reset");
+   if(reset == null){
+    String operation = request.getParameter("Operation");
+    String listOfString = request.getParameter("listOfStrings").toLowerCase();
+    String[] StringArray = listOfString.split(" ");
+    List<String> newStrings = new ArrayList<String>(Arrays.asList(StringArray));
+ 
+    if(operation.equals(OperationAscending)){
+         //Sorts string in ascending order
+         Collections.sort(newStrings);
+ 
+    }else{
+        //Sorts string in descinding order
+         Collections.sort(newStrings);
+         Collections.reverse(newStrings);
+    }
+ 
+    //Adds string to Set to remove duplicates
+    Set<String> s = new LinkedHashSet<>(newStrings);
+    
+    response.setContentType("text/html");
+    PrintWriter out = response.getWriter();
+    PrintHead(out);
+    PrintBody(out, listOfString);
+    makeList(out, s);
 
    }else{
-        Collections.sort(newStrings);
-        Collections.reverse(newStrings);
-   }
+    PrintHead(out);
+    PrintBody(out);
 
-   Set<String> s = new LinkedHashSet<>(newStrings);
-   /*
-   String rslt = "";
-
-   for (String name : s){
-       rslt += name + " ";
    }
-   */
    
-   response.setContentType("text/html");
-   PrintWriter out = response.getWriter();
-   PrintHead(out);
-   PrintBody(out, listOfString);
-   makeList(out, s);
    PrintTail(out);
 }  // End doPost
 
@@ -131,7 +130,7 @@ private void PrintBody (PrintWriter out, String lhs)
    out.println(" <input type=\"submit\" value=\"" + OperationAscending + "\" name=\"Operation\">");
    out.println(" <input type=\"submit\" value=\"" + OperationDescending + "\" name=\"Operation\">");
    
-   //out.println(" <input type=\"reset\" value=\"Reset\" name=\"reset\">");
+   out.println(" <input type=\"reset\" value=\"Reset\" name=\"reset\">");
    out.println("</form>");
    out.println("");
    out.println("</body>");
