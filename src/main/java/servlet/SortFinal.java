@@ -94,7 +94,7 @@ private void PrintHead (PrintWriter out)
    out.println("");
 
    out.println("<head>");
-   out.println("<title>Elias Aleman SWE 432 Fall 2020 Final</title>");
+   out.println("<title>Sort Final</title>");
    out.println("</head>");
    out.println("");
 } // End PrintHead
@@ -107,8 +107,8 @@ private void PrintBody (PrintWriter out, String lhs, String rslt)
 {
    out.println("<body>");
    out.println("<p>");
-   out.println("A simple example that demonstrates how to operate with");
-   out.println("multiple submit buttons.");
+   out.println("Enter a list of Strings, separated by spaces");
+   out.println("List will be return in ascending or descending order, with no duplicates");
    out.println("</p>");
    out.print  ("<form method=\"post\"");
    
@@ -117,12 +117,12 @@ private void PrintBody (PrintWriter out, String lhs, String rslt)
    out.println(" <table>");
    out.println("  <tr>");
    out.println("   <td>List of String (Separated by Spaces):");
-   out.println("   <td><input type=\"text\" name=\"listOfStrings\" value=\"" + lhs + "\" size=5>");
+   out.println("   <td><input type=\"text\" name=\"listOfStrings\" value=\"" + lhs + "\" size=20>");
    out.println("  </tr>");
   
    out.println("  <tr>");
    out.println("   <td>Result:");
-   out.println("   <td><input type=\"text\" name=\"RHS\" value=\"" + rslt + "\" size=6>");
+   out.println("   <td><input type=\"text\" name=\"RHS\" value=\"" + rslt + "\" size=20>");
    out.println("  </tr>");
    out.println(" </table>");
    out.println(" <br>");
