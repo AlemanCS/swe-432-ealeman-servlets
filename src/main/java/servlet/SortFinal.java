@@ -40,6 +40,7 @@ public void doPost (HttpServletRequest request, HttpServletResponse response)
    throws ServletException, IOException
 {
    String reset = request.getParameter("reset");
+   PrintWriter out = response.getWriter();
    if(reset == null){
     String operation = request.getParameter("Operation");
     String listOfString = request.getParameter("listOfStrings").toLowerCase();
@@ -60,7 +61,6 @@ public void doPost (HttpServletRequest request, HttpServletResponse response)
     Set<String> s = new LinkedHashSet<>(newStrings);
     
     response.setContentType("text/html");
-    PrintWriter out = response.getWriter();
     PrintHead(out);
     PrintBody(out, listOfString);
     makeList(out, s);
