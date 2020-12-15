@@ -44,9 +44,9 @@ public void doPost (HttpServletRequest request, HttpServletResponse response)
    String operation = request.getParameter("Operation");
    String listOfString = request.getParameter("listOfStrings");
 
-   listOfString = listOfString.split(" ");
+   Stirng[] StringArray = listOfString.split(" ");
 
-   List<String> newStrings = new Arraylist<String>(Arrays.asList(listOfString));
+   List<String> newStrings = new Arraylist<String>(Arrays.asList(StringArray));
 
    if(operation.equals(OperationAscending)){
         //Sorts string in ascending order
