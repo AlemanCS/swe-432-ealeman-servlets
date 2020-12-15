@@ -42,7 +42,7 @@ public void doPost (HttpServletRequest request, HttpServletResponse response)
 {
    
    String operation = request.getParameter("Operation");
-   String listOfString = request.getParameter("listOfStrings");
+   String listOfString = request.getParameter("listOfStrings").toLowerCase();
 
    String[] StringArray = listOfString.split(" ");
 
