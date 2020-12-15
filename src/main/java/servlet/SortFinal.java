@@ -39,38 +39,29 @@ static String OperationDescending = "Descend";
 public void doPost (HttpServletRequest request, HttpServletResponse response)
    throws ServletException, IOException
 {
-   String reset = request.getParameter("reset");
-   PrintWriter out = response.getWriter();
-   if(reset == null){
-    String operation = request.getParameter("Operation");
-    String listOfString = request.getParameter("listOfStrings").toLowerCase();
-    String[] StringArray = listOfString.split(" ");
-    List<String> newStrings = new ArrayList<String>(Arrays.asList(StringArray));
- 
-    if(operation.equals(OperationAscending)){
-         //Sorts string in ascending order
-         Collections.sort(newStrings);
- 
-    }else{
-        //Sorts string in descinding order
-         Collections.sort(newStrings);
-         Collections.reverse(newStrings);
-    }
- 
-    //Adds string to Set to remove duplicates
-    Set<String> s = new LinkedHashSet<>(newStrings);
-    
-    response.setContentType("text/html");
-    PrintHead(out);
-    PrintBody(out, listOfString);
-    makeList(out, s);
+   String operation = request.getParameter("Operation");
+   String listOfString = request.getParameter("listOfStrings").toLowerCase();
+   String[] StringArray = listOfString.split(" ");
+   List<String> newStrings = new ArrayList<String>(Arrays.asList(StringArray));
+
+   if(operation.equals(OperationAscending)){
+        //Sorts string in ascending order
+        Collections.sort(newStrings);
 
    }else{
-    PrintHead(out);
-    PrintBody(out);
-
+       //Sorts string in descinding order
+        Collections.sort(newStrings);
+        Collections.reverse(newStrings);
    }
+
+   //Adds string to Set to remove duplicates
+   Set<String> s = new LinkedHashSet<>(newStrings);
    
+   response.setContentType("text/html");
+   PrintWriter out = response.getWriter();
+   PrintHead(out);
+   PrintBody(out, listOfString);
+   makeList(out, s);
    PrintTail(out);
 }  // End doPost
 
