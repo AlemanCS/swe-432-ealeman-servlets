@@ -44,7 +44,7 @@ public void doPost (HttpServletRequest request, HttpServletResponse response)
    String operation = request.getParameter("Operation");
    String listOfString = request.getParameter("listOfStrings");
 
-   Stirng[] StringArray = listOfString.split(" ");
+   String[] StringArray = listOfString.split(" ");
 
    List<String> newStrings = new Arraylist<String>(Arrays.asList(StringArray));
 
