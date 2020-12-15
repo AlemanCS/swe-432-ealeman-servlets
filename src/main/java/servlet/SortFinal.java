@@ -1,8 +1,7 @@
 package main.java.servlet;
 
 import java.io.PrintWriter;
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.*;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -108,8 +107,7 @@ private void PrintHead (PrintWriter out)
    out.println("");
 
    out.println("<head>");
-   out.println("<title>Two buttons example</title>");
-   out.println(" <link rel=\"stylesheet\" type=\"text/css\" href=\"" + Style + "\">");
+   out.println("<title>Elias Aleman SWE 432 Fall 2020 Final</title>");
    out.println("</head>");
    out.println("");
 } // End PrintHead
