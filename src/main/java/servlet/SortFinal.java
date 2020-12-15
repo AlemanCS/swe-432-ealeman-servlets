@@ -2,6 +2,7 @@ package main.java.servlet;
 
 import java.io.PrintWriter;
 import java.util.*;
+import java.util.ArrayList;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -11,33 +12,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//David: (1) adds servlet mapping annotation
 import javax.servlet.annotation.WebServlet;
 @WebServlet( name = "sortFinal", urlPatterns = {"/sortFinal"} )
 
-//
-// ***************  PUBLIC OPERATIONS  **********************************
-// public void doPost ()  --> prints a blank HTML page
-// public void doGet ()  --> prints a blank HTML page
-// private void PrintHead (PrintWriter out) --> Prints the HTML head section
-// private void PrintBody (PrintWriter out) --> Prints the HTML body with
-//              the form. Fields are blank.
-// private void PrintBody (PrintWriter out, String lhs, String rhs, String rslt)
-//              Prints the HTML body with the form.
-//              Fields are filled from the parameters.
-// private void PrintTail (PrintWriter out) --> Prints the HTML bottom
-//***********************************************************************
+
 
 public class SortFinal extends HttpServlet
 {
 
-// Location of servlet.
-// David: (5) adds the path of your form submit action
 static String Domain  = "";
 static String Path    = "";
 static String Servlet = "sortFinal";
 
-// Button labels
+
 static String OperationAscending = "Ascend";
 static String OperationDescending = "Descend";
 
