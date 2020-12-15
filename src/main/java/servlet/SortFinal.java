@@ -120,12 +120,12 @@ private void PrintBody (PrintWriter out, String lhs, String rslt)
    out.println(" <table>");
    out.println("  <tr>");
    out.println("   <td>List of String (Separated by Spaces):");
-   out.println("   <td><input type=\"text\" name=\"listOfStrings\" value=\"" + lhs + "\" size=20>");
+   out.println("   <td><input type=\"text\" name=\"listOfStrings\" value=\"" + lhs + "\" size=30>");
    out.println("  </tr>");
   
    out.println("  <tr>");
    out.println("   <td>Result:");
-   out.println("   <td><input type=\"text\" name=\"RHS\" value=\"" + rslt + "\" size=20>");
+   out.println("   <td><input type=\"text\" name=\"RHS\" value=\"" + rslt + "\" size=30>");
    out.println("  </tr>");
    out.println(" </table>");
    out.println(" <br>");
@@ -133,7 +133,7 @@ private void PrintBody (PrintWriter out, String lhs, String rslt)
    out.println(" <input type=\"submit\" value=\"" + OperationAscending + "\" name=\"Operation\">");
    out.println(" <input type=\"submit\" value=\"" + OperationDescending + "\" name=\"Operation\">");
    
-   out.println(" <input type=\"reset\" value=\"Reset\" name=\"reset\">");
+   //out.println(" <input type=\"reset\" value=\"Reset\" name=\"reset\">");
    out.println("</form>");
    out.println("");
    out.println("</body>");
