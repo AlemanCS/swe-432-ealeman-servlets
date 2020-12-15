@@ -59,17 +59,19 @@ public void doPost (HttpServletRequest request, HttpServletResponse response)
    }
 
    Set<String> s = new LinkedHashSet<>(newStrings);
-
+   /*
    String rslt = "";
 
    for (String name : s){
        rslt += name + " ";
    }
+   */
    
    response.setContentType("text/html");
    PrintWriter out = response.getWriter();
    PrintHead(out);
-   PrintBody(out, listOfString, rslt);
+   PrintBody(out, listOfString);
+   makeList(out, s);
    PrintTail(out);
 }  // End doPost
 
@@ -106,7 +108,7 @@ private void PrintHead (PrintWriter out)
  *  Prints the <BODY> of the HTML page with the form data
  *  values from the parameters.
 ********************************************************* */
-private void PrintBody (PrintWriter out, String lhs, String rslt)
+private void PrintBody (PrintWriter out, String lhs)
 {
    out.println("<body>");
    out.println("<p>");
@@ -123,10 +125,6 @@ private void PrintBody (PrintWriter out, String lhs, String rslt)
    out.println("   <td><input type=\"text\" name=\"listOfStrings\" value=\"" + lhs + "\" size=30>");
    out.println("  </tr>");
   
-   out.println("  <tr>");
-   out.println("   <td>Result:");
-   out.println("   <td><input type=\"text\" name=\"RHS\" value=\"" + rslt + "\" size=30>");
-   out.println("  </tr>");
    out.println(" </table>");
    out.println(" <br>");
    out.println(" <br>");
@@ -145,7 +143,7 @@ private void PrintBody (PrintWriter out, String lhs, String rslt)
 ********************************************************* */
 private void PrintBody (PrintWriter out)
 {
-   PrintBody(out, "", "");
+   PrintBody(out, "");
 }
 
 /** *****************************************************
@@ -154,7 +152,20 @@ private void PrintBody (PrintWriter out)
 private void PrintTail (PrintWriter out)
 {
    out.println("");
+   out.println("<p> Elias Aleman SWE 432 Fall 2020 Final ");
    out.println("</html>");
 } // End PrintTail
 
-}  // End twoButtons
+private void makeList(PrintWriter out, Set<String> s){
+    String result = "[ ";
+    for (String name : s){
+        result += name + ", ";
+    }
+    result += "]";
+    out.println("<h3> RESULT </h3>");
+    out.println(result);
+}
+
+} 
+
+
