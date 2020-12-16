@@ -29,24 +29,15 @@ static String OperationDescending = "Descend";
 
 
 
-/** *****************************************************
- *  Overrides HttpServlet's doPost().
- *  Converts the values in the form, performs the operation
- *  indicated by the submit button, and sends the results
- *  back to the client.
-********************************************************* */
 @Override
 public void doPost (HttpServletRequest request, HttpServletResponse response)
    throws ServletException, IOException
 {
     RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/sortFinal2");
     dispatcher.forward(request, response);
-}  // End doPost
+}
 
-/** *****************************************************
- *  Overrides HttpServlet's doGet().
- *  Prints an HTML page with a blank form.
-********************************************************* */
+
 @Override
 public void doGet (HttpServletRequest request, HttpServletResponse response)
        throws ServletException, IOException
@@ -56,11 +47,9 @@ public void doGet (HttpServletRequest request, HttpServletResponse response)
    PrintHead(out);
    PrintBody(out);
    PrintTail(out);
-} // End doGet
+}
 
-/** *****************************************************
- *  Prints the <head> of the HTML page, no <body>.
-********************************************************* */
+
 private void PrintHead (PrintWriter out)
 {
    out.println("<html>");
@@ -70,12 +59,8 @@ private void PrintHead (PrintWriter out)
    out.println("<title>Sort Final</title>");
    out.println("</head>");
    out.println("");
-} // End PrintHead
+} 
 
-/** *****************************************************
- *  Prints the <BODY> of the HTML page with the form data
- *  values from the parameters.
-********************************************************* */
 private void PrintBody (PrintWriter out, String list)
 {
    out.println("<body>");
@@ -99,28 +84,24 @@ private void PrintBody (PrintWriter out, String list)
    out.println(" <input type=\"submit\" value=\"" + OperationAscending + "\" name=\"Operation\">");
    out.println(" <input type=\"submit\" value=\"" + OperationDescending + "\" name=\"Operation\">");
    
-   //out.println(" <input type=\"reset\" value=\"Reset\" name=\"reset\">");
+   
    out.println("</form>");
    out.println("");
    out.println("</body>");
-} // End PrintBody
+}
 
-/** *****************************************************
- *  Overloads PrintBody to print a page
- *  with blanks in the form fields.
-********************************************************* */
+
 private void PrintBody (PrintWriter out)
 {
    PrintBody(out, "");
 }
 
-/** *****************************************************
- *  Prints the bottom of the HTML page.
-********************************************************* */
+
 private void PrintTail (PrintWriter out)
 {
    out.println("");
-   out.println("<p> Elias Aleman SWE 432 Fall 2020 Final ");
+   out.println("<h4>  SWE 432 Fall 2020 Final </h4>");
+   out.println("<h4> Elias Aleman </h4>")
    out.println("</html>");
 } // End PrintTail
 
