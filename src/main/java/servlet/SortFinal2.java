@@ -91,8 +91,8 @@ private void PrintBody (PrintWriter out, String list)
 {
    out.println("<body>");
    out.println("<p>");
-   out.println("Enter a list of Strings, separated by spaces. ");
-   out.println("List will be return in ascending or descending order, with no duplicates");
+   out.println("This web app will take a list of Strings, separated by spaces and ");
+   out.println("return it in ascending or descending order, with no duplicates");
    out.println("</p>");
    out.print  ("<form method=\"post\"");
    
@@ -100,7 +100,7 @@ private void PrintBody (PrintWriter out, String list)
    out.println("");
    out.println(" <table>");
    out.println("  <tr>");
-   out.println("   <td>List of String (Separated by Spaces):");
+   out.println("   <td>Enter Strings here (Separated by Spaces):");
    out.println("   <td><input type=\"text\" name=\"listOfStrings\" value=\"" + list + "\" size=30>");
    out.println("  </tr>");
   

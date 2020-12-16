@@ -80,7 +80,7 @@ private void PrintBody (PrintWriter out, String list)
 {
    out.println("<body>");
    out.println("<p>");
-   out.println("This web app will taken list of Strings, separated by spaces and ");
+   out.println("This web app will take a list of Strings, separated by spaces and ");
    out.println("return it in ascending or descending order, with no duplicates");
    out.println("</p>");
    out.print  ("<form method=\"post\"");
