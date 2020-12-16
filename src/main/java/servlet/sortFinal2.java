@@ -12,16 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import javax.servlet.annotation.WebServlet;
-@WebServlet( name = "sortFinal", urlPatterns = {"/sortFinal"} )
+@WebServlet( name = "sortFinal2", urlPatterns = {"/sortFinal2"} )
 
 
 
-public class SortFinal extends HttpServlet
+public class SortFinal2 extends HttpServlet
 {
-
 static String Domain  = "";
 static String Path    = "";
-static String Servlet = "sortFinal";
+static String Servlet = "sortFinal2";
 
 
 static String OperationAscending = "Ascend";
@@ -39,24 +38,31 @@ static String OperationDescending = "Descend";
 public void doPost (HttpServletRequest request, HttpServletResponse response)
    throws ServletException, IOException
 {
-    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/sortFinal2");
-    dispatcher.forward(request, response);
-}  // End doPost
+   String operation = request.getParameter("Operation");
+   String listOfString = request.getParameter("listOfStrings").toLowerCase();
+   String[] StringArray = listOfString.split(" ");
+   List<String> newStrings = new ArrayList<String>(Arrays.asList(StringArray));
 
-/** *****************************************************
- *  Overrides HttpServlet's doGet().
- *  Prints an HTML page with a blank form.
-********************************************************* */
-@Override
-public void doGet (HttpServletRequest request, HttpServletResponse response)
-       throws ServletException, IOException
-{
+   if(operation.equals(OperationAscending)){
+        //Sorts string in ascending order
+        Collections.sort(newStrings);
+
+   }else{
+       //Sorts string in descinding order
+        Collections.sort(newStrings);
+        Collections.reverse(newStrings);
+   }
+
+   //Adds string to Set to remove duplicates
+   Set<String> s = new LinkedHashSet<>(newStrings);
+   
    response.setContentType("text/html");
    PrintWriter out = response.getWriter();
    PrintHead(out);
-   PrintBody(out);
+   PrintBody(out, listOfString);
+   makeList(out, s);
    PrintTail(out);
-} // End doGet
+}  // End doPost
 
 /** *****************************************************
  *  Prints the <head> of the HTML page, no <body>.
@@ -106,15 +112,6 @@ private void PrintBody (PrintWriter out, String lhs)
 } // End PrintBody
 
 /** *****************************************************
- *  Overloads PrintBody (out,lhs,rhs,rslt) to print a page
- *  with blanks in the form fields.
-********************************************************* */
-private void PrintBody (PrintWriter out)
-{
-   PrintBody(out, "");
-}
-
-/** *****************************************************
  *  Prints the bottom of the HTML page.
 ********************************************************* */
 private void PrintTail (PrintWriter out)
@@ -133,7 +130,4 @@ private void makeList(PrintWriter out, Set<String> s){
     out.println("<h3> RESULT </h3>");
     out.println(result);
 }
-
-} 
-
-
+}
