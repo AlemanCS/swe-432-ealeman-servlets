@@ -43,15 +43,19 @@ public void doPost (HttpServletRequest request, HttpServletResponse response)
    String listOfString = request.getParameter("listOfStrings").toLowerCase();
    String[] StringArray = listOfString.split(" ");
    List<String> newStrings = new ArrayList<String>(Arrays.asList(StringArray));
+   String option = ""
 
    if(operation.equals(OperationAscending)){
         //Sorts string in ascending order
         Collections.sort(newStrings);
+        option = "Ascending Order"
 
    }else{
        //Sorts string in descinding order
         Collections.sort(newStrings);
         Collections.reverse(newStrings);
+        option = "Descending Order"
+
    }
 
    //Adds string to Set to remove duplicates
@@ -61,7 +65,7 @@ public void doPost (HttpServletRequest request, HttpServletResponse response)
    PrintWriter out = response.getWriter();
    PrintHead(out);
    PrintBody(out, listOfString);
-   makeList(out, s);
+   makeList(out, s, option);
    PrintTail(out);
 }  // End doPost
 
@@ -122,14 +126,14 @@ private void PrintTail (PrintWriter out)
    out.println("</html>");
 } // End PrintTail
 
-private void makeList(PrintWriter out, Set<String> s){
+private void makeList(PrintWriter out, Set<String> s, String option){
     String result = "[ ";
     for (String name : s){
         result += name + ", ";
     }
     result += "]";
     out.print("<h3> Resulting list in  ");
-    out.print(result);
+    out.print(option);
     out.print("</h3>");
     out.println(result);
 }
