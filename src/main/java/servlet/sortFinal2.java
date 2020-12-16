@@ -128,7 +128,7 @@ private void makeList(PrintWriter out, Set<String> s){
         result += name + ", ";
     }
     result += "]";
-    out.println("<h3> RESULT </h3>");
+    out.println("<h3> Resulting list in " + result " </h3>");
     out.println(result);
 }
 }
