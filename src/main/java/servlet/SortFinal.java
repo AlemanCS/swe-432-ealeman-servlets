@@ -76,12 +76,12 @@ private void PrintHead (PrintWriter out)
  *  Prints the <BODY> of the HTML page with the form data
  *  values from the parameters.
 ********************************************************* */
-private void PrintBody (PrintWriter out, String lhs)
+private void PrintBody (PrintWriter out, String list)
 {
    out.println("<body>");
    out.println("<p>");
-   out.println("Enter a list of Strings, separated by spaces");
-   out.println("List will be return in ascending or descending order, with no duplicates");
+   out.println("This web app will taken list of Strings, separated by spaces and ");
+   out.println("return it in ascending or descending order, with no duplicates");
    out.println("</p>");
    out.print  ("<form method=\"post\"");
    
@@ -89,8 +89,8 @@ private void PrintBody (PrintWriter out, String lhs)
    out.println("");
    out.println(" <table>");
    out.println("  <tr>");
-   out.println("   <td>List of String (Separated by Spaces):");
-   out.println("   <td><input type=\"text\" name=\"listOfStrings\" value=\"" + lhs + "\" size=30>");
+   out.println("   <td>Enter Strings here (Separated by Spaces):");
+   out.println("   <td><input type=\"text\" name=\"listOfStrings\" value=\"" + list + "\" size=30>");
    out.println("  </tr>");
   
    out.println(" </table>");
@@ -106,7 +106,7 @@ private void PrintBody (PrintWriter out, String lhs)
 } // End PrintBody
 
 /** *****************************************************
- *  Overloads PrintBody (out,lhs,rhs,rslt) to print a page
+ *  Overloads PrintBody to print a page
  *  with blanks in the form fields.
 ********************************************************* */
 private void PrintBody (PrintWriter out)
@@ -123,16 +123,6 @@ private void PrintTail (PrintWriter out)
    out.println("<p> Elias Aleman SWE 432 Fall 2020 Final ");
    out.println("</html>");
 } // End PrintTail
-
-private void makeList(PrintWriter out, Set<String> s){
-    String result = "[ ";
-    for (String name : s){
-        result += name + ", ";
-    }
-    result += "]";
-    out.println("<h3> RESULT </h3>");
-    out.println(result);
-}
 
 } 
 

@@ -87,11 +87,11 @@ private void PrintHead (PrintWriter out)
  *  Prints the <BODY> of the HTML page with the form data
  *  values from the parameters.
 ********************************************************* */
-private void PrintBody (PrintWriter out, String lhs)
+private void PrintBody (PrintWriter out, String list)
 {
    out.println("<body>");
    out.println("<p>");
-   out.println("Enter a list of Strings, separated by spaces");
+   out.println("Enter a list of Strings, separated by spaces. ");
    out.println("List will be return in ascending or descending order, with no duplicates");
    out.println("</p>");
    out.print  ("<form method=\"post\"");
@@ -101,7 +101,7 @@ private void PrintBody (PrintWriter out, String lhs)
    out.println(" <table>");
    out.println("  <tr>");
    out.println("   <td>List of String (Separated by Spaces):");
-   out.println("   <td><input type=\"text\" name=\"listOfStrings\" value=\"" + lhs + "\" size=30>");
+   out.println("   <td><input type=\"text\" name=\"listOfStrings\" value=\"" + list + "\" size=30>");
    out.println("  </tr>");
   
    out.println(" </table>");
