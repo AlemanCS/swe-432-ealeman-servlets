@@ -43,18 +43,18 @@ public void doPost (HttpServletRequest request, HttpServletResponse response)
    String listOfString = request.getParameter("listOfStrings").toLowerCase();
    String[] StringArray = listOfString.split(" ");
    List<String> newStrings = new ArrayList<String>(Arrays.asList(StringArray));
-   String option = ""
+   String option = "";
 
    if(operation.equals(OperationAscending)){
         //Sorts string in ascending order
         Collections.sort(newStrings);
-        option = "Ascending Order"
+        option = "Ascending Order";
 
    }else{
        //Sorts string in descinding order
         Collections.sort(newStrings);
         Collections.reverse(newStrings);
-        option = "Descending Order"
+        option = "Descending Order";
 
    }
 
