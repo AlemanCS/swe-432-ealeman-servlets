@@ -108,7 +108,7 @@ private void PrintTail (PrintWriter out)
 {
    out.println("");
    out.println("<h4>  SWE 432 Fall 2020 Final </h4>");
-   out.println("<h4> Elias Aleman </h4>")
+   out.println("<h4> Elias Aleman </h4>");
    out.println("</html>");
 }
 
